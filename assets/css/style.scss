@@ -1355,7 +1355,12 @@ a {
    Shared page helpers
    ========================================================= */
 
-.content-container,
+.content-container {
+  width: min(1584px, calc(100% - 64px));
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .site-container {
   width: min(1440px, calc(100% - 64px));
   margin-right: auto;
@@ -1499,7 +1504,7 @@ a {
 
 .articles-listing .articles-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1080px);
   gap: 26px;
   align-items: stretch;
 }
@@ -1543,8 +1548,8 @@ a {
 
 .articles-listing .article-card-content {
   display: flex;
-  min-height: 330px;
-  padding: 34px;
+  min-height: 260px;
+  padding: 34px 38px;
   flex-direction: column;
 }
 
