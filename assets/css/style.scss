@@ -1055,7 +1055,7 @@ a {
    ========================================================= */
 
 .audience-section {
-  padding: 5rem 1.5rem;
+  padding: 5rem 0;
   background: #f4f8fc;
 }
 
@@ -1126,7 +1126,7 @@ a {
 /* Author */
 
 .author-section {
-  padding: 6rem 1.5rem;
+  padding: 6rem 0;
   background: #ffffff;
 }
 
@@ -1203,7 +1203,7 @@ a {
 /* Compact certifications */
 
 .certifications-section {
-  padding: 5.5rem 1.5rem;
+  padding: 5.5rem 0;
   background: #f4f8fc;
 }
 
@@ -1272,7 +1272,7 @@ a {
 /* Bottom CTA */
 
 .about-cta {
-  padding: 5rem 1.5rem;
+  padding: 5rem 0;
   background: #ffffff;
 }
 
@@ -1326,8 +1326,8 @@ a {
   .author-section,
   .certifications-section,
   .about-cta {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .author-layout {
@@ -1436,7 +1436,7 @@ a {
 
 .articles-hero .site-container,
 .articles-listing .site-container {
-  width: min(1120px, calc(100% - 64px));
+  width: min(1440px, calc(100% - 64px));
   margin-right: auto;
   margin-left: auto;
 }
