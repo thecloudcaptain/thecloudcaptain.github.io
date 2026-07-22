@@ -1378,50 +1378,6 @@ a {
   text-transform: uppercase;
 }
 
-
-/* =========================================================
-   About page body alignment
-   Keep every About body section on the same centred guide
-   as the About hero, header and footer.
-   ========================================================= */
-
-.site-main:has(.author-section) > section:not(.hero) > div {
-  width: min(1440px, calc(100% - 64px)) !important;
-  max-width: 1440px !important;
-  margin-right: auto !important;
-  margin-left: auto !important;
-}
-
-.site-main:has(.author-section) .content-container {
-  width: 100% !important;
-  max-width: none !important;
-  margin-right: 0 !important;
-  margin-left: 0 !important;
-}
-
-.site-main:has(.author-section) .audience-panel,
-.site-main:has(.author-section) .author-layout,
-.site-main:has(.author-section) .certifications-heading,
-.site-main:has(.author-section) .certification-list,
-.site-main:has(.author-section) .about-cta-panel {
-  width: 100%;
-  max-width: none;
-  margin-right: 0;
-  margin-left: 0;
-}
-
-@media (max-width: 1050px) {
-  .site-main:has(.author-section) > section:not(.hero) > div {
-    width: calc(100% - 48px) !important;
-  }
-}
-
-@media (max-width: 800px) {
-  .site-main:has(.author-section) > section:not(.hero) > div {
-    width: calc(100% - 32px) !important;
-  }
-}
-
 /* =========================================================
    Articles landing page only
    ========================================================= */
@@ -1750,5 +1706,106 @@ a {
   .articles-listing .article-card-meta {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+/* =========================================================
+   Final About-page body alignment
+   Prevent nested containers from narrowing the body content.
+   ========================================================= */
+
+.content-container .content-container,
+.site-container .content-container,
+.expertise > .content-container,
+.audience-section > .content-container,
+.author-section > .content-container,
+.certifications-section > .content-container,
+.about-cta > .content-container {
+  width: 100%;
+  max-width: none;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+/*
+   About body sections use the same centred page width as the
+   Home-page expertise and latest-articles sections.
+*/
+.audience-section,
+.author-section,
+.certifications-section,
+.about-cta {
+  width: 100%;
+}
+
+.audience-section > div,
+.author-section > div,
+.certifications-section > div,
+.about-cta > div {
+  width: min(1440px, calc(100% - 64px));
+  max-width: 1440px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/*
+   Match the "Bridging cloud strategy and implementation"
+   tiles to the Home-page feature tiles.
+*/
+.expertise .card-grid,
+.content-container .card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.expertise .feature-card,
+.content-container .feature-card {
+  min-height: 300px;
+  padding: 36px;
+}
+
+/* Keep the remaining About sections on the same guide. */
+.audience-panel,
+.author-layout,
+.certifications-heading,
+.certification-list,
+.about-cta-panel {
+  width: 100%;
+  max-width: none;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+@media (max-width: 1050px) {
+  .audience-section > div,
+  .author-section > div,
+  .certifications-section > div,
+  .about-cta > div {
+    width: calc(100% - 48px);
+  }
+
+  .expertise .card-grid,
+  .content-container .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .audience-section > div,
+  .author-section > div,
+  .certifications-section > div,
+  .about-cta > div {
+    width: calc(100% - 32px);
+  }
+
+  .expertise .card-grid,
+  .content-container .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .expertise .feature-card,
+  .content-container .feature-card {
+    min-height: auto;
   }
 }
