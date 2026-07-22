@@ -1213,8 +1213,10 @@ a {
 
 .certification-list {
   display: grid;
+  width: 100%;
+  max-width: none;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
-  max-width: 1050px;
 }
 
 .certification-card {
@@ -1306,6 +1308,10 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .certification-list {
+    grid-template-columns: 1fr;
+  }
+
   .audience-panel {
     gap: 2rem;
     padding: 2rem;
@@ -1355,12 +1361,7 @@ a {
    Shared page helpers
    ========================================================= */
 
-.content-container {
-  width: min(1584px, calc(100% - 64px));
-  margin-right: auto;
-  margin-left: auto;
-}
-
+.content-container,
 .site-container {
   width: min(1440px, calc(100% - 64px));
   margin-right: auto;
@@ -1504,7 +1505,8 @@ a {
 
 .articles-listing .articles-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1080px);
+  width: min(1180px, 100%);
+  grid-template-columns: minmax(0, 1fr);
   gap: 26px;
   align-items: stretch;
 }
@@ -1548,7 +1550,7 @@ a {
 
 .articles-listing .article-card-content {
   display: flex;
-  min-height: 260px;
+  min-height: 250px;
   padding: 34px 38px;
   flex-direction: column;
 }
