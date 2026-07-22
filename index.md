@@ -97,9 +97,12 @@ description: Practical Azure architecture, migration, networking and infrastruct
         </p>
       </div>
 
-      <div class="article-status">
-        Coming soon
-      </div>
+      <a
+  class="article-status article-link"
+  href="/articles/azure-files-migration-poc/"
+>
+  Read article →
+</a>
     </article>
   </section>
 </div>
