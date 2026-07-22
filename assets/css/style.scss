@@ -1378,6 +1378,50 @@ a {
   text-transform: uppercase;
 }
 
+
+/* =========================================================
+   About page body alignment
+   Keep every About body section on the same centred guide
+   as the About hero, header and footer.
+   ========================================================= */
+
+.site-main:has(.author-section) > section:not(.hero) > div {
+  width: min(1440px, calc(100% - 64px)) !important;
+  max-width: 1440px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.site-main:has(.author-section) .content-container {
+  width: 100% !important;
+  max-width: none !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+.site-main:has(.author-section) .audience-panel,
+.site-main:has(.author-section) .author-layout,
+.site-main:has(.author-section) .certifications-heading,
+.site-main:has(.author-section) .certification-list,
+.site-main:has(.author-section) .about-cta-panel {
+  width: 100%;
+  max-width: none;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+@media (max-width: 1050px) {
+  .site-main:has(.author-section) > section:not(.hero) > div {
+    width: calc(100% - 48px) !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .site-main:has(.author-section) > section:not(.hero) > div {
+    width: calc(100% - 32px) !important;
+  }
+}
+
 /* =========================================================
    Articles landing page only
    ========================================================= */
