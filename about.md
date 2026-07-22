@@ -22,19 +22,13 @@ permalink: /about/
     </p>
 
     <div class="hero-actions">
-
       <a href="/articles/" class="button button-primary">
         Explore articles
       </a>
 
-      <a
-        href="https://www.linkedin.com/in/usman-mahmood-profile/"
-        class="button button-secondary"
-        target="_blank"
-        rel="noopener noreferrer">
-        Connect on LinkedIn
+      <a href="#about-author" class="button button-secondary">
+        About the author
       </a>
-
     </div>
 
   </div>
@@ -65,10 +59,9 @@ permalink: /about/
       <p>
         The platform covers established areas of cloud architecture and
         infrastructure while also documenting the evolving journey into
-        artificial intelligence. It is a place for architects, engineers and
-        technology leaders to explore cloud transformation, learn from
-        practical delivery experience and navigate the changing technology
-        landscape together.
+        artificial intelligence. It is a place to explore cloud
+        transformation, learn from practical delivery experience and navigate
+        the changing technology landscape together.
       </p>
 
     </div>
@@ -77,215 +70,248 @@ permalink: /about/
     <div class="card-grid">
 
       <article class="feature-card">
+        <div class="card-icon">01</div>
 
-        <div class="card-icon">
-          01
-        </div>
-
-        <h3>
-          Azure Architecture
-        </h3>
+        <h3>Azure Architecture</h3>
 
         <p>
           Azure infrastructure architecture, cloud modernisation, platform
           design and practical guidance for complex enterprise workloads.
         </p>
-
       </article>
 
 
       <article class="feature-card">
+        <div class="card-icon">02</div>
 
-        <div class="card-icon">
-          02
-        </div>
-
-        <h3>
-          Networking and Hybrid DNS
-        </h3>
+        <h3>Networking and Hybrid DNS</h3>
 
         <p>
           Enterprise networking, hybrid connectivity, private access patterns,
           DNS forwarding and hybrid name-resolution architecture.
         </p>
-
       </article>
 
 
       <article class="feature-card">
+        <div class="card-icon">03</div>
 
-        <div class="card-icon">
-          03
-        </div>
-
-        <h3>
-          Migration and Modernisation
-        </h3>
+        <h3>Migration and Modernisation</h3>
 
         <p>
           Migration strategy, proof-of-concept delivery, technical validation
           and practical cloud adoption guidance.
         </p>
-
       </article>
 
 
       <article class="feature-card">
+        <div class="card-icon">04</div>
 
-        <div class="card-icon">
-          04
-        </div>
-
-        <h3>
-          Automation and Infrastructure as Code
-        </h3>
+        <h3>Automation and Infrastructure as Code</h3>
 
         <p>
           Repeatable infrastructure deployment and platform engineering
           patterns using Terraform, Bicep, PowerShell and automation.
         </p>
-
       </article>
 
 
       <article class="feature-card">
+        <div class="card-icon">05</div>
 
-        <div class="card-icon">
-          05
-        </div>
-
-        <h3>
-          Cost Optimisation and FinOps
-        </h3>
+        <h3>Cost Optimisation and FinOps</h3>
 
         <p>
           Azure cost management, governance and FinOps practices aligned with
           business, technical and operational requirements.
         </p>
-
       </article>
 
 
       <article class="feature-card">
+        <div class="card-icon">06</div>
 
-        <div class="card-icon">
-          06
-        </div>
-
-        <h3>
-          AI Learning Journey
-        </h3>
+        <h3>AI Learning Journey</h3>
 
         <p>
           Exploring AI architecture, Azure AI services, adoption patterns and
           practical use cases while learning and navigating the AI journey
           together.
         </p>
-
       </article>
 
     </div>
+
   </div>
 </section>
 
 
-<section class="latest-articles">
+<section class="audience-section">
   <div class="section-container">
 
-    <div class="section-heading">
+    <div class="audience-panel">
 
-      <span class="section-label">
-        ABOUT THE AUTHOR
-      </span>
+      <div class="audience-copy">
 
-      <h2>
-        Usman Mahmood
-      </h2>
+        <span class="section-label">
+          WHO THE PLATFORM IS FOR
+        </span>
 
-      <p>
-        <strong>
-          Cloud Solution Architect specialising in Azure infrastructure,
-          networking and enterprise cloud transformation.
-        </strong>
-      </p>
+        <h2>
+          Guidance for people delivering cloud transformation
+        </h2>
 
-      <p>
-        Usman Mahmood is an experienced cloud and infrastructure architect
-        who helps organisations translate business and technology objectives
-        into secure, resilient and operationally sustainable cloud solutions.
-      </p>
+        <p>
+          The Cloud Captain is built for cloud architects, infrastructure
+          engineers, platform teams, technology leaders and organisations
+          looking for clear, practical and implementation-focused guidance.
+        </p>
 
-      <p>
-        He currently works at Microsoft as a Cloud Solution Architect, focusing
-        on Azure infrastructure and complex enterprise transformation
-        initiatives. Before moving into cloud architecture, he built extensive
-        experience across enterprise IT, infrastructure and telecommunications,
-        giving him a practical understanding of both traditional technology
-        environments and modern cloud platforms.
-      </p>
+        <p>
+          Whether you are designing an Azure platform, modernising existing
+          infrastructure, solving hybrid connectivity challenges, improving
+          governance, managing cloud cost or beginning your AI journey, the
+          objective is to provide guidance that can be applied in the real
+          world.
+        </p>
 
-      <p>
-        His experience spans cloud strategy, enterprise architecture,
-        infrastructure modernisation, hybrid-cloud design and the delivery of
-        complex technology transformation programmes.
-      </p>
-
-      <p>
-        His work covers the complete cloud transformation lifecycle, including
-        technical discovery, architecture development, proof-of-concept
-        validation, migration planning, platform governance, implementation
-        guidance, resilience and operational readiness.
-      </p>
-
-      <p>
-        His specialist areas include Azure infrastructure architecture,
-        enterprise networking, private connectivity, hybrid DNS, Azure landing
-        zones, cloud governance, migration strategy, business continuity,
-        disaster recovery, Infrastructure as Code and Azure cost optimisation.
-      </p>
-
-      <p>
-        Through The Cloud Captain, Usman shares practical architecture
-        guidance, implementation lessons and technical insights shaped by
-        real-world delivery experience. The aim is to go beyond high-level
-        cloud theory and explain the decisions, dependencies and engineering
-        practices involved in building production-ready environments.
-      </p>
-
-      <p>
-        Alongside his established cloud expertise, Usman is expanding his
-        focus into artificial intelligence. He is exploring AI architecture,
-        Azure AI services, enterprise adoption patterns and the practical
-        integration of AI into modern cloud platforms.
-      </p>
-
-      <p>
-        The Cloud Captain documents this journey openly, creating a place where
-        architects, engineers and technology leaders can learn and navigate the
-        evolving AI landscape together.
-      </p>
-
-      <div class="hero-actions">
-
-        <a
-          href="https://www.linkedin.com/in/usman-mahmood-profile/"
-          class="button button-primary"
-          target="_blank"
-          rel="noopener noreferrer">
-          View LinkedIn profile
+        <a href="/articles/" class="text-link">
+          Explore the latest articles →
         </a>
 
       </div>
 
+
+      <div class="audience-highlights">
+
+        <div class="audience-item">
+          <strong>Architects</strong>
+          <span>Designing secure and scalable cloud platforms</span>
+        </div>
+
+        <div class="audience-item">
+          <strong>Engineers</strong>
+          <span>Implementing infrastructure and automation</span>
+        </div>
+
+        <div class="audience-item">
+          <strong>Technology leaders</strong>
+          <span>Planning transformation and modernisation</span>
+        </div>
+
+        <div class="audience-item">
+          <strong>Cloud learners</strong>
+          <span>Building practical Azure and AI knowledge</span>
+        </div>
+
+      </div>
+
     </div>
+
   </div>
 </section>
 
 
-<section class="expertise">
+<section class="author-section" id="about-author">
   <div class="section-container">
 
-    <div class="section-heading">
+    <div class="author-layout">
+
+      <div class="author-image-wrap">
+
+        <img
+          src="/assets/images/usman-mahmood-profile.webp"
+          alt="Usman Mahmood, founder of The Cloud Captain"
+          class="author-image">
+
+      </div>
+
+
+      <div class="author-copy">
+
+        <span class="section-label">
+          ABOUT THE AUTHOR
+        </span>
+
+        <h2>
+          Usman Mahmood
+        </h2>
+
+        <p class="author-title">
+          Cloud Solution Architect specialising in Azure infrastructure,
+          networking and enterprise cloud transformation.
+        </p>
+
+        <p>
+          Usman Mahmood is an experienced cloud and infrastructure architect
+          who helps organisations translate business and technology objectives
+          into secure, resilient and operationally sustainable cloud
+          solutions.
+        </p>
+
+        <p>
+          He currently works at Microsoft as a Cloud Solution Architect,
+          focusing on Azure infrastructure and complex enterprise
+          transformation initiatives. His career has developed across
+          enterprise IT, infrastructure and telecommunications before
+          progressing into cloud architecture and strategic technology
+          advisory.
+        </p>
+
+        <p>
+          His experience spans cloud strategy, enterprise architecture,
+          infrastructure modernisation, hybrid-cloud design and the delivery of
+          complex transformation programmes. His work covers technical
+          discovery, architecture development, proof-of-concept validation,
+          migration planning, platform governance, resilience and operational
+          readiness.
+        </p>
+
+        <p>
+          His specialist areas include Azure infrastructure architecture,
+          enterprise networking, private connectivity, hybrid DNS, Azure
+          landing zones, cloud governance, migration strategy, business
+          continuity, disaster recovery, Infrastructure as Code and Azure cost
+          optimisation.
+        </p>
+
+        <p>
+          Through The Cloud Captain, Usman shares practical architecture
+          guidance, implementation lessons and technical insights shaped by
+          real-world delivery experience. Alongside his established cloud
+          expertise, he is also documenting his learning journey across AI
+          architecture, Azure AI services and enterprise AI adoption.
+        </p>
+
+        <div class="author-actions">
+
+          <a
+            href="https://www.linkedin.com/in/usman-mahmood-profile/"
+            class="button button-primary"
+            target="_blank"
+            rel="noopener noreferrer">
+            Connect on LinkedIn
+          </a>
+
+          <a href="/articles/" class="author-secondary-link">
+            Read published articles
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="certifications-section">
+  <div class="section-container">
+
+    <div class="section-heading certifications-heading">
 
       <span class="section-label">
         PROFESSIONAL CERTIFICATIONS
@@ -296,122 +322,118 @@ permalink: /about/
       </h2>
 
       <p>
-        Professional certifications supporting Usman’s experience across Azure
-        architecture, administration and emerging AI technologies.
+        Credentials supporting Usman’s experience across Azure architecture,
+        administration and emerging AI technologies.
       </p>
 
     </div>
 
 
-    <div class="card-grid">
+    <div class="certification-list">
 
-      <article class="feature-card">
+      <article class="certification-card">
 
-        <div class="card-icon">
+        <div class="certification-badge">
           AI
         </div>
 
-        <h3>
-          Microsoft Certified: Azure AI Fundamentals
-        </h3>
+        <div class="certification-content">
+          <h3>
+            Microsoft Certified: Azure AI Fundamentals
+          </h3>
 
-        <p>
-          Active Microsoft certification demonstrating foundational knowledge
-          of artificial intelligence, machine learning and Azure AI services.
-        </p>
+          <p>
+            Foundational knowledge of artificial intelligence, machine
+            learning and Azure AI services.
+          </p>
+
+          <span class="certification-status active">
+            Active certification
+          </span>
+        </div>
 
       </article>
 
 
-      <article class="feature-card">
+      <article class="certification-card">
 
-        <div class="card-icon">
+        <div class="certification-badge">
           AZ
         </div>
 
-        <h3>
-          Microsoft Certified: Azure Solutions Architect Expert
-        </h3>
+        <div class="certification-content">
+          <h3>
+            Microsoft Certified: Azure Solutions Architect Expert
+          </h3>
 
-        <p>
-          Expert-level certification covering the design of Azure
-          infrastructure, identity, governance, data storage, business
-          continuity and enterprise solutions.
-        </p>
+          <p>
+            Expert-level knowledge across Azure infrastructure, identity,
+            governance, data, resilience and enterprise solution design.
+          </p>
 
-        <p>
-          <strong>Previously held certification</strong>
-        </p>
+          <span class="certification-status">
+            Previously held certification
+          </span>
+        </div>
 
       </article>
 
 
-      <article class="feature-card">
+      <article class="certification-card">
 
-        <div class="card-icon">
+        <div class="certification-badge">
           AD
         </div>
 
-        <h3>
-          Microsoft Certified: Azure Administrator Associate
-        </h3>
+        <div class="certification-content">
+          <h3>
+            Microsoft Certified: Azure Administrator Associate
+          </h3>
 
-        <p>
-          Associate-level certification covering Azure administration,
-          identity, governance, networking, compute, storage and operational
-          management.
-        </p>
+          <p>
+            Azure administration across identity, governance, networking,
+            compute, storage and operational management.
+          </p>
 
-        <p>
-          <strong>Previously held certification</strong>
-        </p>
+          <span class="certification-status">
+            Previously held certification
+          </span>
+        </div>
 
       </article>
 
     </div>
+
   </div>
 </section>
 
 
-<section class="latest-articles">
+<section class="about-cta">
   <div class="section-container">
 
-    <div class="section-heading">
+    <div class="about-cta-panel">
 
-      <span class="section-label">
-        WHO THE PLATFORM IS FOR
-      </span>
+      <div>
+        <span class="section-label">
+          FROM THE BRIDGE
+        </span>
 
-      <h2>
-        Guidance for people delivering cloud transformation
-      </h2>
-
-      <p>
-        The Cloud Captain is built for cloud architects, infrastructure
-        engineers, platform teams, technology leaders and organisations looking
-        for clear, practical and implementation-focused guidance.
-      </p>
-
-      <p>
-        Whether you are designing a new Azure platform, modernising existing
-        infrastructure, solving hybrid connectivity challenges, improving cloud
-        governance, managing cost or beginning your AI journey, the objective
-        is to provide guidance that can be understood and applied in the real
-        world.
-      </p>
+        <h2>
+          Explore practical cloud architecture and engineering guidance
+        </h2>
+      </div>
 
       <div class="hero-actions">
-
         <a href="/articles/" class="button button-primary">
-          Explore the latest articles
+          Explore articles
         </a>
 
         <a href="/" class="button button-secondary">
           Back to home
         </a>
-
       </div>
 
     </div>
+
   </div>
 </section>
