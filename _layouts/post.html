@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+<article class="blog-post">
+  <header class="post-hero">
+    <div class="post-hero-content">
+      <span class="post-label">
+        {{ page.categories | join: " · " }}
+      </span>
+
+      <h1>{{ page.title }}</h1>
+
+      <p class="post-description">
+        {{ page.description }}
+      </p>
+
+      <div class="post-meta">
+        <span>{{ page.date | date: "%d %B %Y" }}</span>
+        <span>By {{ page.author }}</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="post-layout">
+    <div class="post-content">
+      {{ content }}
+    </div>
+  </div>
+</article>
