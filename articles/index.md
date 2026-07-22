@@ -1,15 +1,15 @@
 ---
 layout: default
 title: Articles
-description: Practical articles covering Azure architecture, cloud infrastructure, migration, networking, security and engineering.
+description: Practical cloud architecture, Azure infrastructure, migration, networking, security and engineering guidance.
 permalink: /articles/
 ---
 
-<section class="page-hero articles-hero">
-  <div class="page-container">
-    <span class="eyebrow">Insights and implementation guidance</span>
+<section class="articles-hero">
+  <div class="site-container">
+    <span class="section-label">INSIGHTS &amp; IMPLEMENTATION GUIDANCE</span>
 
-    <h1>Cloud Architecture & Engineering Articles</h1>
+    <h1>Cloud Architecture &amp; Engineering Articles</h1>
 
     <p>
       Practical, implementation-focused guidance covering Azure infrastructure,
@@ -19,11 +19,12 @@ permalink: /articles/
   </div>
 </section>
 
-<section class="articles-section">
-  <div class="page-container">
+<section class="articles-listing">
+  <div class="site-container">
 
-    <div class="section-heading">
-      <span class="eyebrow">Latest publications</span>
+    <div class="articles-heading">
+      <span class="section-label">LATEST PUBLICATIONS</span>
+
       <h2>Featured Articles</h2>
 
       <p>
@@ -32,91 +33,76 @@ permalink: /articles/
       </p>
     </div>
 
-    <div class="articles-grid">
+    {% if site.posts.size > 0 %}
 
-      {% assign published_posts = site.posts %}
+      <div class="articles-grid">
 
-      {% if published_posts.size > 0 %}
-
-        {% for post in published_posts %}
+        {% for post in site.posts %}
 
           <article class="article-card">
 
-            <div class="article-card-top">
-              <span class="article-category">
-                {{ post.category | default: "Azure Architecture" }}
-              </span>
+            <div class="article-card-content">
 
-              {% if post.status %}
-                <span class="article-status">
-                  {{ post.status }}
+              <div class="article-card-meta">
+                <span class="article-category">
+                  {% if post.categories and post.categories.size > 0 %}
+                    {{ post.categories | join: " · " }}
+                  {% else %}
+                    Cloud Architecture
+                  {% endif %}
                 </span>
-              {% endif %}
-            </div>
 
-            <h3>
-              <a href="{{ post.url | relative_url }}">
-                {{ post.title }}
-              </a>
-            </h3>
+                <span class="article-date">
+                  {{ post.date | date: "%d %B %Y" }}
+                </span>
+              </div>
 
-            <p>
-              {% if post.description %}
-                {{ post.description }}
-              {% elsif post.excerpt %}
-                {{ post.excerpt | strip_html | truncate: 220 }}
-              {% else %}
-                Practical cloud architecture and engineering guidance from
-                The Cloud Captain.
-              {% endif %}
-            </p>
+              <h3>
+                <a href="{{ post.url | relative_url }}">
+                  {{ post.title }}
+                </a>
+              </h3>
 
-            <div class="article-card-footer">
-              <span class="article-date">
-                {{ post.date | date: "%d %B %Y" }}
-              </span>
+              <p class="article-description">
+                {% if post.description %}
+                  {{ post.description }}
+                {% else %}
+                  {{ post.excerpt | strip_html | strip_newlines | truncate: 240 }}
+                {% endif %}
+              </p>
 
               <a
-                class="article-link"
+                class="article-read-link"
                 href="{{ post.url | relative_url }}"
                 aria-label="Read {{ post.title }}"
               >
                 Read article
                 <span aria-hidden="true">&rarr;</span>
               </a>
+
             </div>
 
           </article>
 
         {% endfor %}
 
-      {% else %}
+      </div>
 
-        <article class="article-card">
+    {% else %}
 
-          <div class="article-card-top">
-            <span class="article-category">
-              Azure Architecture
-            </span>
+      <div class="articles-empty-state">
+        <span class="section-label">COMING SOON</span>
 
-            <span class="article-status">
-              Coming soon
-            </span>
-          </div>
+        <h3>Technical articles are being prepared</h3>
 
-          <h3>Technical articles are being prepared</h3>
+        <p>
+          New implementation-focused guidance covering Azure architecture,
+          infrastructure, migration, networking and security will be published
+          here.
+        </p>
+      </div>
 
-          <p>
-            New implementation-focused guidance covering Azure architecture,
-            infrastructure, migration, networking and security will appear
-            here.
-          </p>
-
-        </article>
-
-      {% endif %}
-
-    </div>
+    {% endif %}
 
   </div>
 </section>
