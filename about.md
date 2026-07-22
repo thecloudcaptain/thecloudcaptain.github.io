@@ -170,12 +170,13 @@ permalink: /about/
     display: grid;
     grid-template-columns: 280px minmax(0, 1fr);
     gap: 54px;
-    align-items: start;
+    align-items: center;
   }
 
   .about-author-photo-wrap {
     position: relative;
     width: 280px;
+    align-self: center;
   }
 
   .about-author-photo-wrap::before {
@@ -260,60 +261,83 @@ permalink: /about/
     color: #0878d1;
   }
 
-  /* Certifications — compact */
+  /* Certifications — smaller compact section */
+
+  .about-certifications-section {
+    padding: 46px 0;
+  }
+
+  .about-certifications-header {
+    margin-bottom: 20px;
+  }
+
+  .about-certifications-header .about-label {
+    margin-bottom: 7px;
+  }
+
+  .about-certifications-header .about-heading {
+    margin-bottom: 8px;
+    font-size: clamp(1.65rem, 3vw, 2.25rem);
+  }
+
+  .about-certifications-header .about-intro {
+    max-width: 720px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
 
   .about-certification-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-    margin-top: 32px;
+    gap: 12px;
+    margin-top: 20px;
   }
 
   .about-certification-card {
     display: grid;
-    grid-template-columns: 44px minmax(0, 1fr);
-    gap: 14px;
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 12px;
     align-items: start;
-    min-height: 145px;
-    padding: 20px;
+    min-height: 112px;
+    padding: 15px;
     background: #ffffff;
     border: 1px solid #dce7f1;
-    border-radius: 14px;
-    box-shadow: 0 10px 28px rgba(8, 33, 61, 0.055);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(8, 33, 61, 0.045);
   }
 
   .about-certification-icon {
     display: flex;
-    width: 44px;
-    height: 44px;
+    width: 38px;
+    height: 38px;
     align-items: center;
     justify-content: center;
-    border-radius: 11px;
+    border-radius: 9px;
     background: linear-gradient(145deg, #0878d1, #0798eb);
     color: #ffffff;
-    font-size: 0.82rem;
+    font-size: 0.72rem;
     font-weight: 800;
   }
 
   .about-certification-content h3 {
-    margin: 0 0 7px;
+    margin: 0 0 5px;
     color: #071a33;
-    font-size: 0.94rem;
-    line-height: 1.4;
+    font-size: 0.8rem;
+    line-height: 1.35;
   }
 
   .about-certification-content p {
     margin: 0;
     color: #64778d;
-    font-size: 0.8rem;
-    line-height: 1.5;
+    font-size: 0.7rem;
+    line-height: 1.45;
   }
 
   .about-certification-status {
     display: inline-block;
-    margin-top: 9px;
+    margin-top: 6px;
     color: #687b90;
-    font-size: 0.72rem;
+    font-size: 0.64rem;
     font-weight: 750;
   }
 
@@ -391,6 +415,7 @@ permalink: /about/
     .about-author-layout {
       grid-template-columns: 230px minmax(0, 1fr);
       gap: 38px;
+      align-items: center;
     }
 
     .about-author-photo-wrap,
@@ -433,6 +458,7 @@ permalink: /about/
 
     .about-author-photo-wrap {
       width: 210px;
+      margin: 0 auto;
     }
 
     .about-author-photo {
@@ -734,21 +760,27 @@ permalink: /about/
   </section>
 
 
-  <section class="about-section about-section-soft">
+  <section
+    class="about-section about-section-soft about-certifications-section">
+
     <div class="about-container">
 
-      <span class="about-label">
-        Professional certifications
-      </span>
+      <div class="about-certifications-header">
 
-      <h2 class="about-heading">
-        Microsoft Azure certifications
-      </h2>
+        <span class="about-label">
+          Professional certifications
+        </span>
 
-      <p class="about-intro">
-        Credentials supporting Usman’s experience across Azure architecture,
-        administration and emerging AI technologies.
-      </p>
+        <h2 class="about-heading">
+          Microsoft Azure certifications
+        </h2>
+
+        <p class="about-intro">
+          Credentials supporting Usman’s experience across Azure architecture,
+          administration and emerging AI technologies.
+        </p>
+
+      </div>
 
 
       <div class="about-certification-list">
