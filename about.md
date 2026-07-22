@@ -22,6 +22,7 @@ permalink: /about/
     </p>
 
     <div class="hero-actions">
+
       <a href="/articles/" class="button button-primary">
         Explore articles
       </a>
@@ -33,6 +34,7 @@ permalink: /about/
         rel="noopener noreferrer">
         Connect on LinkedIn
       </a>
+
     </div>
 
   </div>
@@ -209,24 +211,30 @@ permalink: /about/
 
       <p>
         Usman Mahmood is an experienced cloud and infrastructure architect
-        working with organisations to translate business and technology
-        objectives into secure, resilient and operationally sustainable cloud
-        solutions.
+        who helps organisations translate business and technology objectives
+        into secure, resilient and operationally sustainable cloud solutions.
       </p>
 
       <p>
-        He currently works as a Cloud Solution Architect at Microsoft, with a
-        focus on Azure infrastructure. His professional experience covers cloud
-        strategy, enterprise architecture, infrastructure modernisation,
-        hybrid-cloud design and the delivery of complex technology
-        transformation initiatives.
+        He currently works at Microsoft as a Cloud Solution Architect, focusing
+        on Azure infrastructure and complex enterprise transformation
+        initiatives. Before moving into cloud architecture, he built extensive
+        experience across enterprise IT, infrastructure and telecommunications,
+        giving him a practical understanding of both traditional technology
+        environments and modern cloud platforms.
       </p>
 
       <p>
-        His work spans the cloud transformation lifecycle, including technical
-        discovery, architecture development, proof-of-concept validation,
-        migration planning, platform governance, implementation guidance,
-        resilience and operational readiness.
+        His experience spans cloud strategy, enterprise architecture,
+        infrastructure modernisation, hybrid-cloud design and the delivery of
+        complex technology transformation programmes.
+      </p>
+
+      <p>
+        His work covers the complete cloud transformation lifecycle, including
+        technical discovery, architecture development, proof-of-concept
+        validation, migration planning, platform governance, implementation
+        guidance, resilience and operational readiness.
       </p>
 
       <p>
@@ -248,9 +256,13 @@ permalink: /about/
         Alongside his established cloud expertise, Usman is expanding his
         focus into artificial intelligence. He is exploring AI architecture,
         Azure AI services, enterprise adoption patterns and the practical
-        integration of AI into modern cloud platforms. The Cloud Captain
-        documents this journey openly so others can learn and navigate the
-        evolving AI landscape alongside him.
+        integration of AI into modern cloud platforms.
+      </p>
+
+      <p>
+        The Cloud Captain documents this journey openly, creating a place where
+        architects, engineers and technology leaders can learn and navigate the
+        evolving AI landscape together.
       </p>
 
       <div class="hero-actions">
@@ -308,10 +320,6 @@ permalink: /about/
           of artificial intelligence, machine learning and Azure AI services.
         </p>
 
-        <p>
-          <strong>Issued:</strong> June 2026
-        </p>
-
       </article>
 
 
@@ -326,14 +334,13 @@ permalink: /about/
         </h3>
 
         <p>
-          Previously held expert-level certification covering the design of
-          Azure infrastructure, identity, governance, data storage, business
+          Expert-level certification covering the design of Azure
+          infrastructure, identity, governance, data storage, business
           continuity and enterprise solutions.
         </p>
 
         <p>
-          <strong>Earned:</strong> May 2023<br>
-          <strong>Expired:</strong> May 2025
+          <strong>Previously held certification</strong>
         </p>
 
       </article>
@@ -350,14 +357,13 @@ permalink: /about/
         </h3>
 
         <p>
-          Previously held associate-level certification covering Azure
-          administration, identity, governance, networking, compute, storage
-          and operational management.
+          Associate-level certification covering Azure administration,
+          identity, governance, networking, compute, storage and operational
+          management.
         </p>
 
         <p>
-          <strong>Earned:</strong> May 2023<br>
-          <strong>Expired:</strong> May 2025
+          <strong>Previously held certification</strong>
         </p>
 
       </article>
