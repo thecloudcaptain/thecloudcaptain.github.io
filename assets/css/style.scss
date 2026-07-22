@@ -965,3 +965,305 @@ a {
     flex-wrap: wrap;
   }
 }
+
+
+/* =========================================================
+   About page
+   ========================================================= */
+
+.audience-section {
+  padding: 5rem 1.5rem;
+  background: #f4f8fc;
+}
+
+.audience-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: 4rem;
+  align-items: center;
+  padding: 3.5rem;
+  background: #ffffff;
+  border: 1px solid #dce7f1;
+  border-radius: 24px;
+  box-shadow: 0 18px 50px rgba(8, 33, 61, 0.07);
+}
+
+.audience-copy h2 {
+  max-width: 720px;
+  margin: 0.65rem 0 1rem;
+}
+
+.audience-copy p {
+  max-width: 760px;
+  color: #53677f;
+  line-height: 1.75;
+}
+
+.text-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-weight: 700;
+  color: #0878d1;
+  text-decoration: none;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}
+
+.audience-highlights {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.audience-item {
+  padding: 1rem 1.1rem;
+  background: #f5f9fd;
+  border: 1px solid #e0eaf3;
+  border-radius: 12px;
+}
+
+.audience-item strong,
+.audience-item span {
+  display: block;
+}
+
+.audience-item strong {
+  margin-bottom: 0.2rem;
+  color: #071a33;
+}
+
+.audience-item span {
+  color: #64778d;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+
+/* Author */
+
+.author-section {
+  padding: 6rem 1.5rem;
+  background: #ffffff;
+}
+
+.author-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
+  gap: 4.5rem;
+  align-items: center;
+}
+
+.author-image-wrap {
+  position: relative;
+}
+
+.author-image-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 20px -20px -20px 20px;
+  z-index: 0;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #dcebfa, #eef6fd);
+}
+
+.author-image {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 24px;
+  box-shadow: 0 24px 55px rgba(7, 26, 51, 0.16);
+}
+
+.author-copy h2 {
+  margin: 0.65rem 0 0.4rem;
+  font-size: clamp(2.3rem, 4vw, 3.6rem);
+}
+
+.author-title {
+  margin-bottom: 1.5rem;
+  color: #0878d1;
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.author-copy p {
+  max-width: 850px;
+  color: #53677f;
+  line-height: 1.75;
+}
+
+.author-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-top: 1.8rem;
+}
+
+.author-secondary-link {
+  color: #253b55;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.author-secondary-link:hover {
+  color: #0878d1;
+}
+
+
+/* Compact certifications */
+
+.certifications-section {
+  padding: 5.5rem 1.5rem;
+  background: #f4f8fc;
+}
+
+.certifications-heading {
+  margin-bottom: 2rem;
+}
+
+.certification-list {
+  display: grid;
+  gap: 1rem;
+  max-width: 1050px;
+}
+
+.certification-card {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+  padding: 1.4rem 1.6rem;
+  background: #ffffff;
+  border: 1px solid #dce7f1;
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(8, 33, 61, 0.055);
+}
+
+.certification-badge {
+  display: flex;
+  width: 52px;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  background: linear-gradient(145deg, #0878d1, #0798eb);
+  color: #ffffff;
+  font-weight: 800;
+  box-shadow: 0 8px 18px rgba(8, 120, 209, 0.2);
+}
+
+.certification-content h3 {
+  margin: 0 0 0.35rem;
+  color: #071a33;
+  font-size: 1.08rem;
+  line-height: 1.4;
+}
+
+.certification-content p {
+  margin: 0;
+  color: #64778d;
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+.certification-status {
+  display: inline-block;
+  margin-top: 0.65rem;
+  color: #687b90;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.certification-status.active {
+  color: #0878d1;
+}
+
+
+/* Bottom CTA */
+
+.about-cta {
+  padding: 5rem 1.5rem;
+  background: #ffffff;
+}
+
+.about-cta-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 3rem;
+  border-radius: 22px;
+  background: linear-gradient(120deg, #061d36, #075da7);
+  color: #ffffff;
+}
+
+.about-cta-panel h2 {
+  max-width: 720px;
+  margin: 0.65rem 0 0;
+  color: #ffffff;
+}
+
+.about-cta-panel .section-label {
+  color: #4fc3ff;
+}
+
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .audience-panel,
+  .author-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .audience-panel {
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .author-image-wrap {
+    max-width: 430px;
+  }
+
+  .about-cta-panel {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .audience-section,
+  .author-section,
+  .certifications-section,
+  .about-cta {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .author-layout {
+    gap: 2.5rem;
+  }
+
+  .certification-card {
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 1rem;
+    padding: 1.2rem;
+  }
+
+  .certification-badge {
+    width: 44px;
+    height: 44px;
+    font-size: 0.9rem;
+  }
+
+  .about-cta-panel {
+    padding: 2rem;
+  }
+}
