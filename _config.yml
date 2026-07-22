@@ -1,13 +1,15 @@
 title: The Cloud Captain
-description: Practical Azure architecture, infrastructure, migration and automation guidance.
+
+description: >-
+  Practical Azure architecture, infrastructure, migration,
+  networking and automation guidance.
+
 url: "https://thecloudcaptain.github.io"
 baseurl: ""
 
-theme: minima
+author: The Cloud Captain
 
-author:
-  name: The Cloud Captain
+markdown: kramdown
 
-header_pages:
-  - index.md
-  - about.md
+exclude:
+  - README.md
