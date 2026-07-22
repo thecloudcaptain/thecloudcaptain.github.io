@@ -16,17 +16,6 @@ tags:
   - NTFS ACLs
 permalink: /articles/azure-files-migration-poc/
 ---
-<div class="article-hero">
-
-<span class="article-category">AZURE · MIGRATION · FILE SERVICES</span>
-
-# Azure Files Migration POC
-
-## End-to-End Public Runbook
-
-**Azure File Sync, Private Endpoints, AD DS Authentication, ACLs, and User Home-Folder Mapping**
-
-
 > **Public-document redaction notice**
 >
 > All personal, tenant-specific, subscription-specific, domain-specific, IP-address, email-address, and uniquely identifying resource values have been replaced with generic placeholders. Replace placeholders only in a controlled working copy.
@@ -39,7 +28,7 @@ permalink: /articles/azure-files-migration-poc/
 | Document status | Reusable public runbook and detailed command record |
 | Security note | Do not place real credentials, account keys, tenant IDs, subscription IDs, or production IP addresses in this document |
 
-# Contents
+## Contents
 
 1. [Purpose, scope, and success criteria](#1-purpose-scope-and-success-criteria)
 2. [Reference architecture and placeholders](#2-reference-architecture-and-placeholders)
@@ -62,7 +51,7 @@ permalink: /articles/azure-files-migration-poc/
 19. [Appendix A - Complete command library](#appendix-a---complete-command-library)
 20. [Appendix B - Portal configuration checklist](#appendix-b---portal-configuration-checklist)
 
-# 1. Purpose, scope, and success criteria
+## 1. Purpose, scope, and success criteria
 
 This runbook documents a complete Azure Files migration proof of concept. The POC validates two related but separate paths:
 
@@ -87,7 +76,7 @@ The POC is successful when all of the following are demonstrated:
 - Each test user maps only their own home folder using Kerberos, without a storage account key.
 - Cross-user access is denied by NTFS ACLs.
 
-# 2. Reference architecture and placeholders
+## 2. Reference architecture and placeholders
 
 | Placeholder | Example meaning |
 | --- | --- |
@@ -126,7 +115,7 @@ Direct user access
 \\<STORAGE_ACCOUNT>.file.core.windows.net\<FILE_SHARE>\Home\User01
 ```
 
-# 3. Phase 0 - Cleanup and reset
+## 3. Phase 0 - Cleanup and reset
 
 For a clean rerun, retain the file server and source data, but remove the previous Azure File Sync topology and dedicated Azure resources.
 
@@ -159,7 +148,7 @@ Get-ChildItem $SourcePath -File -Recurse -Force |
     Export-Csv "C:\POCReports\PreResetFileInventory.csv" -NoTypeInformation
 ```
 
-# 4. Phase 1 - Active Directory users and security group
+## 4. Phase 1 - Active Directory users and security group
 
 Create or confirm multiple enabled domain users. Use one synchronized security group for Azure share-level RBAC, while using individual NTFS ACLs for each home folder.
 
@@ -209,7 +198,7 @@ Start-ADSyncSyncCycle -PolicyType Delta
 
 In Microsoft Entra ID, verify that the group source is Windows Server AD and that all expected members are visible before assigning Azure RBAC.
 
-# 5. Phase 2 - Source folders, test data, and NTFS ACLs
+## 5. Phase 2 - Source folders, test data, and NTFS ACLs
 
 > **Run location**
 >
@@ -290,11 +279,11 @@ icacls "F:\Shares\POCData" `
 | Home\User02 | user02: Modify; Domain Admins and SYSTEM: Full Control |
 | Home\User03 | user03: Modify; Domain Admins and SYSTEM: Full Control |
 
-# 6. Phase 3 - Create the Azure storage account and file share in the portal
+## 6. Phase 3 - Create the Azure storage account and file share in the portal
 
 This phase creates the Azure Files destination. The portal is used so the facilitator can see and explain each platform setting.
 
-## 6.1 Create the storage account
+### 6.1 Create the storage account
 
 1. In the Azure portal, search for Storage accounts and select Create.
 
@@ -320,7 +309,7 @@ This phase creates the Azure Files destination. The portal is used so the facili
 | Encryption | Microsoft-managed keys; SMB encryption in transit enabled | Suitable for a basic POC and avoids customer-managed-key prerequisites. |
 | Tags | Apply required governance tags | Supports policy and cost attribution. |
 
-## 6.2 Create the Azure Files private endpoint during storage-account deployment
+### 6.2 Create the Azure Files private endpoint during storage-account deployment
 
 1. On the Networking tab, select Disable public network access if private-only access is required.
 
@@ -338,7 +327,7 @@ This phase creates the Azure Files destination. The portal is used so the facili
 >
 > The private endpoint allocates a private IP in the selected subnet. Clients continue using the normal `<STORAGE_ACCOUNT>`.file.core.windows.net hostname; DNS changes its resolution to the private endpoint.
 
-## 6.3 Create the file share
+### 6.3 Create the file share
 
 1. Open the storage account and select Data storage > File shares.
 
@@ -354,7 +343,7 @@ This phase creates the Azure Files destination. The portal is used so the facili
 
 1. Create the share and verify that it is initially empty. Do not manually create the home folders in Azure; Azure File Sync will upload them.
 
-# 7. Phase 4 - Azure Files private endpoint and DNS validation
+## 7. Phase 4 - Azure Files private endpoint and DNS validation
 
 > **Run location**
 >
@@ -376,10 +365,11 @@ Expected DNS chain:
   A     -> <PRIVATE_ENDPOINT_IP>
 ```
 
-> Do not use ping
+> **Do not use ping**
+>
 > Azure Storage does not normally answer ICMP echo requests. Use nslookup or Resolve-DnsName for DNS, and Test-NetConnection for TCP 445 and 443.
 
-# 8. Phase 5 - Create the Storage Sync Service in the portal
+## 8. Phase 5 - Create the Storage Sync Service in the portal
 
 The Storage Sync Service is the top-level Azure File Sync resource. It contains registered servers and sync groups.
 
@@ -405,7 +395,7 @@ The Storage Sync Service is the top-level Azure File Sync resource. It contains 
 >
 > The Storage Sync Service coordinates server registration, sync groups, cloud endpoints, server endpoints, health, and synchronization metadata. Its private endpoint is separate from the Azure Files private endpoint.
 
-# 9. Phase 6 - Storage Sync private endpoint and connectivity validation
+## 9. Phase 6 - Storage Sync private endpoint and connectivity validation
 
 The Storage Sync Service private endpoint publishes several service-specific FQDNs, commonly management, syncp, syncs, and monitoring names. The portal shows the exact names and assigned private IPs.
 
@@ -437,7 +427,7 @@ foreach ($Endpoint in $AfsEndpoints) {
 }
 ```
 
-# 10. Phase 7 - Install the Azure File Sync agent and register the server
+## 10. Phase 7 - Install the Azure File Sync agent and register the server
 
 > **Run location**
 >
@@ -474,9 +464,9 @@ Import-Module "C:\Program Files\Azure\StorageSyncAgent\StorageSync.Management.Se
 Test-StorageSyncNetworkConnectivity
 ```
 
-# 11. Phase 8 - Create the sync group, cloud endpoint, and server endpoint
+## 11. Phase 8 - Create the sync group, cloud endpoint, and server endpoint
 
-## 11.1 Create the sync group and cloud endpoint
+### 11.1 Create the sync group and cloud endpoint
 
 1. Open `<STORAGE_SYNC_SERVICE>` in the Azure portal.
 
@@ -496,7 +486,7 @@ Test-StorageSyncNetworkConnectivity
 >
 > A sync group defines the synchronization relationship. It contains one cloud endpoint, representing the Azure file share, and one or more server endpoints on registered Windows servers.
 
-## 11.2 Add the server endpoint
+### 11.2 Add the server endpoint
 
 1. Open the newly created sync group.
 
@@ -518,7 +508,7 @@ Test-StorageSyncNetworkConnectivity
 >
 > The server endpoint path is the local NTFS folder, not the SMB UNC path. Azure File Sync synchronizes NTFS security descriptors, but it does not migrate the local SMB share definition into Azure RBAC.
 
-# 12. Phase 9 - Validate synchronization and portal access
+## 12. Phase 9 - Validate synchronization and portal access
 
 ```powershell
 # Run on <FILE_SERVER> to create a fresh change
@@ -546,13 +536,13 @@ A successful upload session normally includes HResult 0, no failed transfers, an
 
 1. After the initial upload, run an on-demand backup when Azure Files backup is enabled to capture a known recovery point.
 
-# 13. Phase 10 - Enable on-premises AD DS authentication with AzFilesHybrid
+## 13. Phase 10 - Enable on-premises AD DS authentication with AzFilesHybrid
 
 > **Run location**
 >
 > Run this phase on `<DOMAIN_CONTROLLER>` or a domain-joined management server using 64-bit Windows PowerShell 5.1 as Administrator.
 
-## 13.1 Create a dedicated OU
+### 13.1 Create a dedicated OU
 
 ```powershell
 Import-Module ActiveDirectory
@@ -567,7 +557,7 @@ New-ADOrganizationalUnit `
     -ProtectedFromAccidentalDeletion $true
 ```
 
-## 13.2 Verify PowerShell prerequisites and import AzFilesHybrid
+### 13.2 Verify PowerShell prerequisites and import AzFilesHybrid
 
 ```powershell
 $PSVersionTable.PSVersion
@@ -583,7 +573,7 @@ Get-Command Join-AzStorageAccount
 Get-Command Debug-AzStorageAccountAuth
 ```
 
-## 13.3 Connect to the correct Azure subscription
+### 13.3 Connect to the correct Azure subscription
 
 ```powershell
 Connect-AzAccount
@@ -607,7 +597,7 @@ Get-AzContext |
 >
 > Never publish the real account email, subscription ID, tenant ID, or privileged administrator name. Store those values only in a secure working record.
 
-## 13.4 Locate the storage account and define variables
+### 13.4 Locate the storage account and define variables
 
 ```powershell
 Get-AzStorageAccount |
@@ -621,7 +611,7 @@ $OrganizationalUnitDN = "<AZURE_FILES_OU_DN>"
 Set-AzContext -SubscriptionId $SubscriptionId
 ```
 
-## 13.5 Check for stale AD objects and join the storage account
+### 13.5 Check for stale AD objects and join the storage account
 
 ```powershell
 Get-ADObject `
@@ -644,7 +634,7 @@ Join-AzStorageAccount `
 
 The join creates or configures an AD computer account representing the storage account and configures Azure Files to trust the on-premises AD DS domain.
 
-## 13.6 Validate the AD object, SPN, and encryption
+### 13.6 Validate the AD object, SPN, and encryption
 
 ```powershell
 Get-ADComputer `
@@ -665,7 +655,7 @@ Debug-AzStorageAccountAuth `
 
 Expected SPN: cifs/`<STORAGE_ACCOUNT>`.file.core.windows.net. Confirm the diagnostic reports a healthy Azure Files authentication configuration and modern Kerberos encryption.
 
-# 14. Phase 11 - Assign Azure Files share-level RBAC
+## 14. Phase 11 - Assign Azure Files share-level RBAC
 
 Azure RBAC provides permission to enter the SMB share. NTFS ACLs then decide which directories and files the user may access.
 
@@ -692,9 +682,9 @@ Azure RBAC provides permission to enter the SMB share. NTFS ACLs then decide whi
 | Storage File Data Privileged Reader | Administrative portal/data access that can bypass normal ACL evaluation for read operations; not for end users. |
 | Storage File Data Privileged Contributor | Highly privileged administrative access; avoid for normal user mapping. |
 
-# 15. Phase 12 - Test user mapping, Kerberos, and ACL isolation
+## 15. Phase 12 - Test user mapping, Kerberos, and ACL isolation
 
-## 15.1 Permit temporary RDP access for test users
+### 15.1 Permit temporary RDP access for test users
 
 > **Run location**
 >
@@ -722,7 +712,7 @@ $Group.psbase.Invoke("Members") | ForEach-Object {
 }
 ```
 
-## 15.2 Reset a forgotten test-user password when necessary
+### 15.2 Reset a forgotten test-user password when necessary
 
 > **Run location**
 >
@@ -739,7 +729,7 @@ Enable-ADAccount -Identity "user01"
 Set-ADUser -Identity "user01" -ChangePasswordAtLogon $false
 ```
 
-## 15.3 Perform the user mapping test
+### 15.3 Perform the user mapping test
 
 Sign out completely, then sign in interactively as the domain user. Do not rely on Run as different user, because the SMB and Kerberos behavior must be tested using the user’s real logon token.
 
@@ -771,7 +761,7 @@ Get-ChildItem \\<STORAGE_ACCOUNT>.file.core.windows.net\<FILE_SHARE>\Home\User03
 >
 > Do not specify /user: and do not enter a storage account key during end-user tests. The test is intended to prove AD DS/Kerberos authentication and NTFS authorization.
 
-# 16. Troubleshooting guide
+## 16. Troubleshooting guide
 
 | Symptom | Likely layer | Checks |
 | --- | --- | --- |
@@ -786,7 +776,7 @@ Get-ChildItem \\<STORAGE_ACCOUNT>.file.core.windows.net\<FILE_SHARE>\Home\User03
 | ActiveDirectory module missing | Wrong machine/tooling | Run AD cmdlets on the domain controller or install RSAT-AD-PowerShell. |
 | $Home assignment fails | PowerShell reserved variable | Use $HomePath or another custom variable name. |
 
-# 17. Validation checklist and evidence pack
+## 17. Validation checklist and evidence pack
 
 | Evidence | Expected result |
 | --- | --- |
@@ -807,7 +797,7 @@ Get-ChildItem \\<STORAGE_ACCOUNT>.file.core.windows.net\<FILE_SHARE>\Home\User03
 | Negative ACL test | Each user receives Access Denied against the other users’ folders. |
 | Backup | On-demand recovery point captured after initial synchronization, when backup is in scope. |
 
-# 18. Production cutover considerations
+## 18. Production cutover considerations
 
 A successful POC proves the pattern but does not by itself constitute a production migration plan. Before production cutover:
 
@@ -822,7 +812,7 @@ A successful POC proves the pattern but does not by itself constitute a producti
 - Monitor Kerberos, SMB authorization, performance, and support incidents.
 - Remove temporary RDP permissions and test accounts when the POC closes.
 
-# Appendix A - Complete command library
+## Appendix A - Complete command library
 
 This appendix consolidates the principal commands used throughout the runbook. Replace all placeholders before execution.
 
@@ -900,7 +890,7 @@ net use H: \\<STORAGE_ACCOUNT>.file.core.windows.net\<FILE_SHARE>\Home\User01 /p
 Get-ChildItem H:\
 ```
 
-# Appendix B - Portal configuration checklist
+## Appendix B - Portal configuration checklist
 
 | Resource/area | Portal path | Configuration to confirm |
 | --- | --- | --- |
@@ -917,5 +907,6 @@ Get-ChildItem H:\
 | Data browse | File share > Browse | Microsoft Entra user account selected; synchronized Home folders visible. |
 | Backup | Backup Center / file-share backup | Policy applied and on-demand recovery point captured when in scope. |
 
-> End state
+> **End state**
+>
 > The completed POC provides private synchronization from a Windows file server to Azure Files, preserves NTFS ACLs, enables on-premises AD DS/Kerberos authentication, and demonstrates per-user home-folder isolation without exposing storage account keys to end users.
