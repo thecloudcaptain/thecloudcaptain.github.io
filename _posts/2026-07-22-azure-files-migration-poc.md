@@ -16,6 +16,10 @@ tags:
   - NTFS ACLs
 permalink: /articles/azure-files-migration-poc/
 ---
+> **Deployment assumption**
+>
+> This version is written for a new POC deployment. It does not include cleanup or reset steps for an earlier Azure File Sync environment.
+
 > **Public-document redaction notice**
 >
 > All personal, tenant-specific, subscription-specific, domain-specific, IP-address, email-address, and uniquely identifying resource values have been replaced with generic placeholders. Replace placeholders only in a controlled working copy.
@@ -32,22 +36,21 @@ permalink: /articles/azure-files-migration-poc/
 
 1. [Purpose, scope, and success criteria](#1-purpose-scope-and-success-criteria)
 2. [Reference architecture and placeholders](#2-reference-architecture-and-placeholders)
-3. [Phase 0 - Cleanup and reset](#3-phase-0---cleanup-and-reset)
-4. [Phase 1 - Active Directory users and security group](#4-phase-1---active-directory-users-and-security-group)
-5. [Phase 2 - Source folders, test data, and NTFS ACLs](#5-phase-2---source-folders-test-data-and-ntfs-acls)
-6. [Phase 3 - Create the Azure storage account and file share](#6-phase-3---create-the-azure-storage-account-and-file-share-in-the-portal)
-7. [Phase 4 - Azure Files private endpoint and DNS validation](#7-phase-4---azure-files-private-endpoint-and-dns-validation)
-8. [Phase 5 - Create the Storage Sync Service](#8-phase-5---create-the-storage-sync-service-in-the-portal)
-9. [Phase 6 - Storage Sync private endpoint validation](#9-phase-6---storage-sync-private-endpoint-and-connectivity-validation)
-10. [Phase 7 - Install the Azure File Sync agent](#10-phase-7---install-the-azure-file-sync-agent-and-register-the-server)
-11. [Phase 8 - Create the sync topology](#11-phase-8---create-the-sync-group-cloud-endpoint-and-server-endpoint)
-12. [Phase 9 - Validate synchronization](#12-phase-9---validate-synchronization-and-portal-access)
-13. [Phase 10 - Enable on-premises AD DS authentication](#13-phase-10---enable-on-premises-ad-ds-authentication-with-azfileshybrid)
-14. [Phase 11 - Assign share-level RBAC](#14-phase-11---assign-azure-files-share-level-rbac)
-15. [Phase 12 - Test Kerberos and ACL isolation](#15-phase-12---test-user-mapping-kerberos-and-acl-isolation)
-16. [Troubleshooting guide](#16-troubleshooting-guide)
-17. [Validation checklist and evidence pack](#17-validation-checklist-and-evidence-pack)
-18. [Production cutover considerations](#18-production-cutover-considerations)
+3. [Phase 1 - Active Directory users and security group](#3-phase-1---active-directory-users-and-security-group)
+4. [Phase 2 - Source folders, test data, and NTFS ACLs](#4-phase-2---source-folders-test-data-and-ntfs-acls)
+5. [Phase 3 - Create the Azure storage account and file share](#5-phase-3---create-the-azure-storage-account-and-file-share-in-the-portal)
+6. [Phase 4 - Azure Files private endpoint and DNS validation](#6-phase-4---azure-files-private-endpoint-and-dns-validation)
+7. [Phase 5 - Create the Storage Sync Service](#7-phase-5---create-the-storage-sync-service-in-the-portal)
+8. [Phase 6 - Storage Sync private endpoint validation](#8-phase-6---storage-sync-private-endpoint-and-connectivity-validation)
+9. [Phase 7 - Install the Azure File Sync agent](#9-phase-7---install-the-azure-file-sync-agent-and-register-the-server)
+10. [Phase 8 - Create the sync topology](#10-phase-8---create-the-sync-group-cloud-endpoint-and-server-endpoint)
+11. [Phase 9 - Validate synchronization](#11-phase-9---validate-synchronization-and-portal-access)
+12. [Phase 10 - Enable on-premises AD DS authentication](#12-phase-10---enable-on-premises-ad-ds-authentication-with-azfileshybrid)
+13. [Phase 11 - Assign share-level RBAC](#13-phase-11---assign-azure-files-share-level-rbac)
+14. [Phase 12 - Test Kerberos and ACL isolation](#14-phase-12---test-user-mapping-kerberos-and-acl-isolation)
+15. [Troubleshooting guide](#15-troubleshooting-guide)
+16. [Validation checklist and evidence pack](#16-validation-checklist-and-evidence-pack)
+17. [Production cutover considerations](#17-production-cutover-considerations)
 19. [Appendix A - Complete command library](#appendix-a---complete-command-library)
 20. [Appendix B - Portal configuration checklist](#appendix-b---portal-configuration-checklist)
 
@@ -115,40 +118,8 @@ Direct user access
 \\<STORAGE_ACCOUNT>.file.core.windows.net\<FILE_SHARE>\Home\User01
 ```
 
-## 3. Phase 0 - Cleanup and reset
 
-For a clean rerun, retain the file server and source data, but remove the previous Azure File Sync topology and dedicated Azure resources.
-
-| Delete/reset | Preserve |
-| --- | --- |
-| Server endpoint, cloud endpoint, sync group, registered-server object, Storage Sync Service | File server VM, disks, NIC, source data, NTFS ACLs |
-| Dedicated Azure Files and Storage Sync private endpoints | VNet, subnets, NSGs, DNS resolver/forwarder |
-| Dedicated POC storage account and file share | Domain controller, Entra Connect, test users |
-| Azure File Sync agent if a completely clean reinstall is required | Private DNS zones when shared with other resources |
-| Old POC access group if identity configuration is also being rebuilt | Unrelated resources in the same resource group |
-
-> **Safety check**
->
-> Deleting a storage account deletes every file share, blob container, queue, and table inside it. Delete the account only when it is dedicated to the POC.
-
-```powershell
-# Run on <FILE_SERVER> before cleanup
-$SourcePath = "F:\Shares\POCData"
-
-# Confirm no cloud-tiered/offline files remain
-Get-ChildItem -Path $SourcePath -File -Recurse -Force |
-    Where-Object { $_.Attributes -band [System.IO.FileAttributes]::Offline } |
-    Select-Object FullName, Length, Attributes
-
-# Capture source inventory and ACLs
-New-Item C:\POCReports -ItemType Directory -Force
-icacls $SourcePath /save "C:\POCReports\PreResetACLs.txt" /t /c
-Get-ChildItem $SourcePath -File -Recurse -Force |
-    Select-Object FullName, Length, LastWriteTime |
-    Export-Csv "C:\POCReports\PreResetFileInventory.csv" -NoTypeInformation
-```
-
-## 4. Phase 1 - Active Directory users and security group
+## 3. Phase 1 - Active Directory users and security group
 
 Create or confirm multiple enabled domain users. Use one synchronized security group for Azure share-level RBAC, while using individual NTFS ACLs for each home folder.
 
@@ -198,7 +169,7 @@ Start-ADSyncSyncCycle -PolicyType Delta
 
 In Microsoft Entra ID, verify that the group source is Windows Server AD and that all expected members are visible before assigning Azure RBAC.
 
-## 5. Phase 2 - Source folders, test data, and NTFS ACLs
+## 4. Phase 2 - Source folders, test data, and NTFS ACLs
 
 > **Run location**
 >
@@ -279,7 +250,7 @@ icacls "F:\Shares\POCData" `
 | Home\User02 | user02: Modify; Domain Admins and SYSTEM: Full Control |
 | Home\User03 | user03: Modify; Domain Admins and SYSTEM: Full Control |
 
-## 6. Phase 3 - Create the Azure storage account and file share in the portal
+## 5. Phase 3 - Create the Azure storage account and file share in the portal
 
 This phase creates the Azure Files destination. The portal is used so the facilitator can see and explain each platform setting.
 
@@ -343,7 +314,7 @@ This phase creates the Azure Files destination. The portal is used so the facili
 
 1. Create the share and verify that it is initially empty. Do not manually create the home folders in Azure; Azure File Sync will upload them.
 
-## 7. Phase 4 - Azure Files private endpoint and DNS validation
+## 6. Phase 4 - Azure Files private endpoint and DNS validation
 
 > **Run location**
 >
@@ -369,7 +340,7 @@ Expected DNS chain:
 >
 > Azure Storage does not normally answer ICMP echo requests. Use nslookup or Resolve-DnsName for DNS, and Test-NetConnection for TCP 445 and 443.
 
-## 8. Phase 5 - Create the Storage Sync Service in the portal
+## 7. Phase 5 - Create the Storage Sync Service in the portal
 
 The Storage Sync Service is the top-level Azure File Sync resource. It contains registered servers and sync groups.
 
@@ -395,7 +366,7 @@ The Storage Sync Service is the top-level Azure File Sync resource. It contains 
 >
 > The Storage Sync Service coordinates server registration, sync groups, cloud endpoints, server endpoints, health, and synchronization metadata. Its private endpoint is separate from the Azure Files private endpoint.
 
-## 9. Phase 6 - Storage Sync private endpoint and connectivity validation
+## 8. Phase 6 - Storage Sync private endpoint and connectivity validation
 
 The Storage Sync Service private endpoint publishes several service-specific FQDNs, commonly management, syncp, syncs, and monitoring names. The portal shows the exact names and assigned private IPs.
 
@@ -427,7 +398,7 @@ foreach ($Endpoint in $AfsEndpoints) {
 }
 ```
 
-## 10. Phase 7 - Install the Azure File Sync agent and register the server
+## 9. Phase 7 - Install the Azure File Sync agent and register the server
 
 > **Run location**
 >
@@ -464,7 +435,7 @@ Import-Module "C:\Program Files\Azure\StorageSyncAgent\StorageSync.Management.Se
 Test-StorageSyncNetworkConnectivity
 ```
 
-## 11. Phase 8 - Create the sync group, cloud endpoint, and server endpoint
+## 10. Phase 8 - Create the sync group, cloud endpoint, and server endpoint
 
 ### 11.1 Create the sync group and cloud endpoint
 
@@ -508,7 +479,7 @@ Test-StorageSyncNetworkConnectivity
 >
 > The server endpoint path is the local NTFS folder, not the SMB UNC path. Azure File Sync synchronizes NTFS security descriptors, but it does not migrate the local SMB share definition into Azure RBAC.
 
-## 12. Phase 9 - Validate synchronization and portal access
+## 11. Phase 9 - Validate synchronization and portal access
 
 ```powershell
 # Run on <FILE_SERVER> to create a fresh change
@@ -536,7 +507,7 @@ A successful upload session normally includes HResult 0, no failed transfers, an
 
 1. After the initial upload, run an on-demand backup when Azure Files backup is enabled to capture a known recovery point.
 
-## 13. Phase 10 - Enable on-premises AD DS authentication with AzFilesHybrid
+## 12. Phase 10 - Enable on-premises AD DS authentication with AzFilesHybrid
 
 > **Run location**
 >
@@ -655,7 +626,7 @@ Debug-AzStorageAccountAuth `
 
 Expected SPN: cifs/`<STORAGE_ACCOUNT>`.file.core.windows.net. Confirm the diagnostic reports a healthy Azure Files authentication configuration and modern Kerberos encryption.
 
-## 14. Phase 11 - Assign Azure Files share-level RBAC
+## 13. Phase 11 - Assign Azure Files share-level RBAC
 
 Azure RBAC provides permission to enter the SMB share. NTFS ACLs then decide which directories and files the user may access.
 
@@ -682,7 +653,7 @@ Azure RBAC provides permission to enter the SMB share. NTFS ACLs then decide whi
 | Storage File Data Privileged Reader | Administrative portal/data access that can bypass normal ACL evaluation for read operations; not for end users. |
 | Storage File Data Privileged Contributor | Highly privileged administrative access; avoid for normal user mapping. |
 
-## 15. Phase 12 - Test user mapping, Kerberos, and ACL isolation
+## 14. Phase 12 - Test user mapping, Kerberos, and ACL isolation
 
 ### 15.1 Permit temporary RDP access for test users
 
@@ -761,7 +732,7 @@ Get-ChildItem \\<STORAGE_ACCOUNT>.file.core.windows.net\<FILE_SHARE>\Home\User03
 >
 > Do not specify /user: and do not enter a storage account key during end-user tests. The test is intended to prove AD DS/Kerberos authentication and NTFS authorization.
 
-## 16. Troubleshooting guide
+## 15. Troubleshooting guide
 
 | Symptom | Likely layer | Checks |
 | --- | --- | --- |
@@ -776,7 +747,7 @@ Get-ChildItem \\<STORAGE_ACCOUNT>.file.core.windows.net\<FILE_SHARE>\Home\User03
 | ActiveDirectory module missing | Wrong machine/tooling | Run AD cmdlets on the domain controller or install RSAT-AD-PowerShell. |
 | $Home assignment fails | PowerShell reserved variable | Use $HomePath or another custom variable name. |
 
-## 17. Validation checklist and evidence pack
+## 16. Validation checklist and evidence pack
 
 | Evidence | Expected result |
 | --- | --- |
@@ -797,7 +768,7 @@ Get-ChildItem \\<STORAGE_ACCOUNT>.file.core.windows.net\<FILE_SHARE>\Home\User03
 | Negative ACL test | Each user receives Access Denied against the other users’ folders. |
 | Backup | On-demand recovery point captured after initial synchronization, when backup is in scope. |
 
-## 18. Production cutover considerations
+## 17. Production cutover considerations
 
 A successful POC proves the pattern but does not by itself constitute a production migration plan. Before production cutover:
 
