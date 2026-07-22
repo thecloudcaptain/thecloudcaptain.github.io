@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <meta
+    name="description"
+    content="{{ page.description | default: site.description }}"
+  >
+
+  <title>
+    {% if page.title %}
+      {{ page.title }} | {{ site.title }}
+    {% else %}
+      {{ site.title }}
+    {% endif %}
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="{{ '/assets/css/style.css' | relative_url }}"
+  >
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="nav-container">
+      <a class="brand" href="{{ '/' | relative_url }}">
+        <span class="brand-mark">TCC</span>
+
+        <span class="brand-text">
+          <strong>The Cloud Captain</strong>
+          <small>Navigate Azure with confidence</small>
+        </span>
+      </a>
+
+      <nav class="site-navigation">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/articles/' | relative_url }}">Articles</a>
+        <a href="{{ '/about/' | relative_url }}">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div>
+        <strong>The Cloud Captain</strong>
+        <p>
+          Practical Azure architecture, migration, networking and
+          infrastructure guidance.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/articles/' | relative_url }}">Articles</a>
+        <a href="{{ '/about/' | relative_url }}">About</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © {{ site.time | date: "%Y" }} The Cloud Captain
+    </div>
+  </footer>
+</body>
+</html>
