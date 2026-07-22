@@ -22,6 +22,17 @@
   </title>
 
   <link
+    rel="icon"
+    type="image/png"
+    href="{{ '/assets/images/tcc-logo.png' | relative_url }}"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    href="{{ '/assets/images/tcc-logo.png' | relative_url }}"
+  >
+
+  <link
     rel="stylesheet"
     href="{{ '/assets/css/style.css' | relative_url }}"
   >
@@ -31,15 +42,19 @@
   <header class="site-header">
     <div class="nav-container">
       <a class="brand" href="{{ '/' | relative_url }}">
-        <span class="brand-mark">TCC</span>
+        <img
+          class="brand-logo"
+          src="{{ '/assets/images/tcc-logo.png' | relative_url }}"
+          alt="The Cloud Captain logo"
+        >
 
         <span class="brand-text">
           <strong>The Cloud Captain</strong>
-          <small>Navigate Azure with confidence</small>
+          <small>Cloud Strategy · Architecture · Engineering</small>
         </span>
       </a>
 
-      <nav class="site-navigation">
+      <nav class="site-navigation" aria-label="Primary navigation">
         <a href="{{ '/' | relative_url }}">Home</a>
         <a href="{{ '/articles/' | relative_url }}">Articles</a>
         <a href="{{ '/about/' | relative_url }}">About</a>
@@ -53,12 +68,21 @@
 
   <footer class="site-footer">
     <div class="footer-container">
-      <div>
-        <strong>The Cloud Captain</strong>
-        <p>
-          Practical Azure architecture, migration, networking and
-          infrastructure guidance.
-        </p>
+      <div class="footer-brand">
+        <img
+          class="footer-logo"
+          src="{{ '/assets/images/tcc-logo.png' | relative_url }}"
+          alt="The Cloud Captain logo"
+        >
+
+        <div>
+          <strong>The Cloud Captain</strong>
+
+          <p>
+            Practical Azure architecture, migration, networking,
+            infrastructure and automation guidance.
+          </p>
+        </div>
       </div>
 
       <div class="footer-links">
