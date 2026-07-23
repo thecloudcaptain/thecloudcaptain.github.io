@@ -16,6 +16,15 @@ tags:
   - NTFS ACLs
 permalink: /articles/azure-files-migration-poc/
 ---
+
+<figure class="article-architecture-diagram">
+  <img
+    src="{{ '/assets/images/azure-files-migration-poc-architecture.png' | relative_url }}"
+    alt="Azure Files Migration POC architecture showing the on-premises environment, Azure File Sync, private DNS, private endpoints, Azure Files, AD DS authentication, NTFS ACL preservation, and validated outcomes."
+  >
+  <figcaption>Azure Files Migration POC reference architecture and validation scope.</figcaption>
+</figure>
+
 > **Deployment assumption**
 >
 > This version is written for a new POC deployment. It does not include cleanup or reset steps for an earlier Azure File Sync environment.
