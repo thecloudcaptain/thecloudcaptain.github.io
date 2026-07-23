@@ -696,6 +696,28 @@ a {
   box-shadow: var(--shadow);
 }
 
+.article-architecture-diagram {
+  width: 100%;
+  margin: 0 0 48px;
+}
+
+.article-architecture-diagram img {
+  width: 100%;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.article-architecture-diagram figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+
 /* =========================================================
    Footer
    ========================================================= */
@@ -1874,4 +1896,3 @@ a {
     flex-direction: column;
   }
 }
-
