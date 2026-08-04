@@ -890,3 +890,8 @@ Get-ChildItem H:\
 > **End state**
 >
 > The completed POC provides private synchronization from a Windows file server to Azure Files, preserves NTFS ACLs, enables on-premises AD DS/Kerberos authentication, and demonstrates per-user home-folder isolation without exposing storage account keys to end users.
+
+### Written by Usman Mahmood
+
+Founder of **The Cloud Captain**, sharing practical guidance on Azure architecture, governance, networking and cloud transformation.
+
