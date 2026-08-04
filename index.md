@@ -80,29 +80,63 @@ description: Practical Azure architecture, migration, networking and infrastruct
       <h2>Latest articles</h2>
     </div>
 
-    <article class="article-card">
-      <div>
-        <div class="article-meta">
-          AZURE FILES · MIGRATION · PROOF OF CONCEPT
+    {% assign latest_post = site.posts.first %}
+
+    {% if latest_post %}
+      <article class="article-card">
+        <div>
+          <div class="article-meta">
+            {% if latest_post.categories and latest_post.categories.size > 0 %}
+              {{ latest_post.categories | join: " · " | upcase }}
+            {% else %}
+              CLOUD ARCHITECTURE
+            {% endif %}
+          </div>
+
+          <h3>
+            {{ latest_post.title }}
+          </h3>
+
+          <p>
+            {% if latest_post.description %}
+              {{ latest_post.description }}
+            {% else %}
+              {{ latest_post.excerpt | strip_html | strip_newlines | truncate: 240 }}
+            {% endif %}
+          </p>
         </div>
 
-        <h3>
-          Migrating an on-premises file server using Azure File Sync
-        </h3>
+        <a
+          class="article-status article-link"
+          href="{{ latest_post.url | relative_url }}"
+        >
+          Read article →
+        </a>
+      </article>
+    {% else %}
+      <article class="article-card">
+        <div>
+          <div class="article-meta">
+            ARTICLES
+          </div>
 
-        <p>
-          A practical proof-of-concept approach covering hybrid identity,
-          private connectivity, Azure File Sync and preservation of NTFS
-          permissions.
-        </p>
-      </div>
+          <h3>
+            Technical guidance is being prepared
+          </h3>
 
-      <a
-  class="article-status article-link"
-  href="/articles/azure-files-migration-poc/"
->
-  Read article →
-</a>
-    </article>
+          <p>
+            New Azure architecture, migration, networking and automation
+            articles will appear here.
+          </p>
+        </div>
+
+        <a
+          class="article-status article-link"
+          href="/articles/"
+        >
+          View articles →
+        </a>
+      </article>
+    {% endif %}
   </section>
 </div>
