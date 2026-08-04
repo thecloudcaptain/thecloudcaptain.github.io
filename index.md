@@ -20,7 +20,7 @@ description: Practical Azure architecture, migration, networking and infrastruct
     </p>
 
     <div class="hero-buttons">
-      <a class="button button-primary" href="#latest-articles">
+      <a class="button button-primary"  href="{{ '/articles/' | relative_url }}">
         Explore articles
       </a>
 
