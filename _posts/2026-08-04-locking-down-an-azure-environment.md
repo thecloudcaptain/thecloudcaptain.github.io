@@ -272,4 +272,9 @@ Tags provide the classification, Azure Policy provides enforcement, and RBAC pro
 
 The result is not an environment where every existing resource remains freely changeable. It is an environment where existing workloads continue running, new deployment is stopped, and future changes follow a controlled exception process.
 
+### Written by Usman Mahmood
+
+Founder of **The Cloud Captain**, sharing practical guidance on Azure architecture, governance, networking and cloud transformation.
+
+
 > **P.S. Further reading:** Microsoft Learn provides detailed guidance on [Azure Policy deny effects](https://learn.microsoft.com/azure/governance/policy/concepts/effect-deny), [policy rule structure](https://learn.microsoft.com/azure/governance/policy/concepts/definition-structure-policy-rule), [policy exemptions](https://learn.microsoft.com/azure/governance/policy/concepts/exemption-structure), and [Azure tag governance](https://learn.microsoft.com/azure/azure-resource-manager/management/tag-policies).
