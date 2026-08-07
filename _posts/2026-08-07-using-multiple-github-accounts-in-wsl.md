@@ -13,6 +13,8 @@ tags:
   - SSH
   - WSL
   - VS Code
+image: /assets/images/github-multiple-accounts-wsl-ssh.png
+image_alt: "Using multiple GitHub accounts in WSL with separate SSH keys"
 permalink: /articles/using-multiple-github-accounts-in-wsl/
 ---
 
