@@ -117,33 +117,83 @@ You can also protect the private key with a passphrase when prompted.
 
 ## 3. Add Each Public Key to the Correct GitHub Account
 
-Display the public key for Account A:
+First, display the public key for Account A:
 
 ```bash
 cat ~/.ssh/github_account_a_key.pub
 ```
 
-Copy the complete output.
-
-While signed into GitHub Account A, go to:
+Copy the complete output. It will look similar to:
 
 ```text
-Settings
+ssh-ed25519 AAAA... github-account-a
+```
+
+Only copy the **public key** from the `.pub` file. Never upload or share the private key.
+
+Now sign into **GitHub Account A** in your browser.
+
+Navigate to:
+
+```text
+Profile menu
+→ Settings
 → SSH and GPG keys
 → New SSH key
 ```
 
-Add the key as an **Authentication Key**.
+Configure the key:
 
-Now display the public key for Account B:
+```text
+Title: WSL - Development
+Key type: Authentication Key
+Key: <paste the public key here>
+```
+
+Then select:
+
+```text
+Add SSH key
+```
+
+GitHub may ask you to confirm your password or authentication method.
+
+Repeat the same process for Account B.
+
+Display its public key:
 
 ```bash
 cat ~/.ssh/github_account_b_key.pub
 ```
 
-Sign into GitHub Account B and add that key in the same way.
+Then sign into **GitHub Account B** and navigate to:
 
-At this point, both GitHub accounts have their own SSH identity.
+```text
+Profile menu
+→ Settings
+→ SSH and GPG keys
+→ New SSH key
+```
+
+Add the second key:
+
+```text
+Title: WSL - Development
+Key type: Authentication Key
+Key: <paste the Account B public key>
+```
+
+At this point, each GitHub account has its own SSH public key registered:
+
+```text
+GitHub Account A
+→ github_account_a_key.pub
+
+GitHub Account B
+→ github_account_b_key.pub
+```
+
+The corresponding private keys remain securely stored inside WSL and are never uploaded to GitHub.
 
 ---
 
