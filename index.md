@@ -83,8 +83,23 @@ description: Practical Azure architecture, migration, networking and infrastruct
     {% assign latest_post = site.posts.first %}
 
     {% if latest_post %}
-      <article class="article-card">
-        <div>
+      <article class="article-card latest-article-card{% unless latest_post.image %} latest-article-card-no-image{% endunless %}">
+        {% if latest_post.image %}
+          <a
+            class="latest-article-thumbnail-link"
+            href="{{ latest_post.url | relative_url }}"
+            aria-label="Read {{ latest_post.title }}"
+          >
+            <img
+              class="latest-article-thumbnail"
+              src="{{ latest_post.image | relative_url }}"
+              alt="{{ latest_post.image_alt | default: latest_post.title | escape }}"
+              loading="lazy"
+            >
+          </a>
+        {% endif %}
+
+        <div class="latest-article-content">
           <div class="article-meta">
             {% if latest_post.categories and latest_post.categories.size > 0 %}
               {{ latest_post.categories | join: " · " | upcase }}
@@ -94,7 +109,9 @@ description: Practical Azure architecture, migration, networking and infrastruct
           </div>
 
           <h3>
-            {{ latest_post.title }}
+            <a href="{{ latest_post.url | relative_url }}">
+              {{ latest_post.title }}
+            </a>
           </h3>
 
           <p>
@@ -107,15 +124,15 @@ description: Practical Azure architecture, migration, networking and infrastruct
         </div>
 
         <a
-          class="article-status article-link"
+          class="article-status article-link latest-article-button"
           href="{{ latest_post.url | relative_url }}"
         >
           Read article →
         </a>
       </article>
     {% else %}
-      <article class="article-card">
-        <div>
+      <article class="article-card latest-article-card latest-article-card-no-image">
+        <div class="latest-article-content">
           <div class="article-meta">
             ARTICLES
           </div>
@@ -131,8 +148,8 @@ description: Practical Azure architecture, migration, networking and infrastruct
         </div>
 
         <a
-          class="article-status article-link"
-          href="/articles/"
+          class="article-status article-link latest-article-button"
+          href="{{ '/articles/' | relative_url }}"
         >
           View articles →
         </a>
