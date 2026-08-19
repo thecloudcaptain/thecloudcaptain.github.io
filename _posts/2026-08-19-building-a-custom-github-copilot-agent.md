@@ -17,7 +17,7 @@ tags:
   - AI Agents
 permalink: /articles/building-a-custom-github-copilot-agent/
 ---
-
+![Building a custom GitHub Copilot agent with prompts and skills]({{ '/assets/images/github-copilot-agent-prompts-skills.png' | relative_url }})
 GitHub Copilot can do much more than respond to one-off prompts.
 
 With **custom agents**, **agent skills**, **prompt files**, and **repository instructions**, you can give Copilot a defined role, reusable specialist knowledge, repeatable tasks, and persistent rules for how it should work inside a repository.
