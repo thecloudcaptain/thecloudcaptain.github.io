@@ -4,6 +4,7 @@ title: "How to Build a Custom GitHub Copilot Agent with Prompts and Skills"
 description: "A practical introduction to GitHub Copilot custom agents, reusable skills, prompt files and repository instructions using a simple Azure Networking Agent example."
 date: 2026-08-19
 author: The Cloud Captain
+image: /assets/images/github-copilot-agent-prompts-skills.png
 categories:
   - GitHub
   - AI
